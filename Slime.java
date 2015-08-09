@@ -8,6 +8,7 @@ public class Slime extends Moveable
     {
         super(s, vector);
         right = true;
+        
     }
     public void draw(Graphics g)
     {
@@ -49,16 +50,32 @@ public class Slime extends Moveable
     {
         return p;
     }
+    public void setPosition(Vector vec)
+    {
+        p = vec;
+    }
     public Vector getVelocity()
     {
         return v;
+    }
+    public void setVelocity(Vector vec)
+    {
+        v = vec;
     }
     public Vector getAcceleration()
     {
         return a;
     }   
+    public void setAcceleration(Vector vec)
+    {
+        a = vec;
+    }
     public void setLeft()
     {
         right = false;
+    }
+    public void setRight()
+    {
+        right = true;
     }
 }
