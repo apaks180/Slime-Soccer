@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.params=s\ vector
+comment0.target=Moveable(Screen,\ Vector)
+comment1.params=
+comment1.target=Vector\ getPosition()
+comment2.params=vec
+comment2.target=void\ setPosition(Vector)
+comment3.params=
+comment3.target=Vector\ getVelocity()
+comment4.params=vec
+comment4.target=void\ setVelocity(Vector)
+comment5.params=
+comment5.target=Vector\ getAcceleration()
+comment6.params=vec
+comment6.target=void\ setAcceleration(Vector)
+comment7.params=g
+comment7.target=void\ draw(java.awt.Graphics)
+numComments=8
