@@ -17,6 +17,31 @@ public abstract class Moveable
         a = new Vector(0,0);
     }
     
+    public Vector getPosition()
+    {
+        return p;
+    }
+    public void setPosition(Vector vec)
+    {
+        p = vec;
+    }
+    public Vector getVelocity()
+    {
+        return v;
+    }
+    public void setVelocity(Vector vec)
+    {
+        v = vec;
+    }
+    public Vector getAcceleration()
+    {
+        return a;
+    }   
+    public void setAcceleration(Vector vec)
+    {
+        a = vec;
+    }
+    
     public abstract void draw(Graphics g);
     
         

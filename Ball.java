@@ -11,16 +11,4 @@ public class Ball extends Moveable
         g.setColor(Color.BLACK);
         g.drawOval((int)p.x, (int)p.y, 20,20);
     }
-    public Vector getPosition()
-    {
-        return p;
-    }
-    public Vector getVelocity()
-    {
-        return v;
-    }
-    public Vector getAcceleration()
-    {
-        return a;
-    }
 }

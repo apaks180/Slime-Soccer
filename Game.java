@@ -11,7 +11,6 @@ public class Game
        
 
         f.add(s);
-        f.addKeyListener(s);
         
         f.setVisible(true);
         f.setLocationRelativeTo(null);   //Centers it     
@@ -23,9 +22,6 @@ public class Game
             s.repaint();            
             try{Thread.sleep(37);}catch(InterruptedException e){}   //40
         }
-        
-        
-        
     }
 }
 

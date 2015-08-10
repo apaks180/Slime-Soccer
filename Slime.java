@@ -3,13 +3,15 @@ import java.awt.*;
 public class Slime extends Moveable
 {    
     private boolean right;
+    private final int whichSlime;
     
-    public Slime(Screen s, Vector vector)
+    public Slime(Screen s, Vector vector, int slimeNum)
     {
         super(s, vector);
         right = true;
-        
+        whichSlime = Global.SLIME1;
     }
+    
     public void draw(Graphics g)
     {
         g.setColor(Color.CYAN);
@@ -46,36 +48,32 @@ public class Slime extends Moveable
             //g.fillOval((int)p.x +15, (int)p.y + 17, 3, 3);
         }
     }
-    public Vector getPosition()
+    
+    public void updateVariables()
     {
-        return p;
+        p = Vector.addVectors(p,v);
+        v = Vector.addVectors(v,a);
+        
+        double vsign = v.x/Math.abs(v.x);//this is either 1 or -1 for use in keeping the direction constant
+        if (Math.abs(v.x)>Global.MAX_X_VELOCITY)
+            v.x = Global.MAX_X_VELOCITY * vsign;//sets the velocity to the max.
+            
+        if (v.y >= 0)//makes sure gravity is less when slime is past peak
+            a.y = Global.GRAVITY_GOING_DOWN;
     }
-    public void setPosition(Vector vec)
-    {
-        p = vec;
-    }
-    public Vector getVelocity()
-    {
-        return v;
-    }
-    public void setVelocity(Vector vec)
-    {
-        v = vec;
-    }
-    public Vector getAcceleration()
-    {
-        return a;
-    }   
-    public void setAcceleration(Vector vec)
-    {
-        a = vec;
-    }
+    
     public void setLeft()
     {
         right = false;
     }
+    
     public void setRight()
     {
         right = true;
+    }
+    
+    public int getWhichSlime()
+    {
+        return whichSlime;
     }
 }
