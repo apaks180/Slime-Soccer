@@ -1,6 +1,6 @@
 #BlueJ class context
-comment0.params=s\ vector\ slimeNum
-comment0.target=Slime(Screen,\ Vector,\ int)
+comment0.params=s\ vector\ slimeNum\ initiallyLeft
+comment0.target=Slime(Screen,\ Vector,\ int,\ boolean)
 comment1.params=g
 comment1.target=void\ draw(java.awt.Graphics)
 comment2.params=
@@ -15,6 +15,4 @@ comment6.params=
 comment6.target=int\ getDirection()
 comment7.params=
 comment7.target=int\ getWhichSlime()
-comment8.params=
-comment8.target=void\ changeSlime()
-numComments=9
+numComments=8

@@ -2,15 +2,23 @@ import java.awt.*;
 
 public class Slime extends Moveable
 {    
-    private int direction; //1 = left 2 = right 3 = still
-    private boolean isLeft = true;
+    private int direction;
+    private boolean isLeft;
     private int whichSlime; //final int whichSlime;
     
-    public Slime(Screen s, Vector vector, int slimeNum)
+    public static final int LEFT = 1;
+    public static final int RIGHT = 2;
+    public static final int STILL = 3;
+    
+    public static final int SLIME1 = 0;
+    public static final int SLIME2 = 1;
+    
+    public Slime(Screen s, Vector vector, int slimeNum, boolean initiallyLeft)
     {
         super(s, vector);
-        direction = 2;
-        whichSlime = Global.SLIME1;
+        direction = STILL;
+        whichSlime = slimeNum;
+        isLeft = initiallyLeft;
     }
     
     public void draw(Graphics g)
@@ -52,6 +60,8 @@ public class Slime extends Moveable
     
     public void updateVariables()
     {
+        //STEP 1
+        //UPDATES POSITION
         if(((p.x+v.x) > Global.LEFT_BOUND) && ((p.x+v.x) < Global.RIGHT_BOUND   )) //Establishes Left and Right bounds
         {
             p = Vector.addVectors(p,v);
@@ -62,6 +72,10 @@ public class Slime extends Moveable
             p.y = p.y + v.y;
             v = Vector.addVectors(v,a);
         }
+        
+        
+        //STEP 2
+        //UPDATES Y ACCELERATION
         
         //Jump starts out as constant velocity
         if(p.y<Global.PEAK) //Applies heavy acceleration just before the peak of the Slime's jump
@@ -74,48 +88,76 @@ public class Slime extends Moveable
             p.y = Global.FLOOR;
             v.y = 0;
         }
-          
-        if(direction==1 && v.x<0) //Prevents derpy turnaround accelerations 
-            a.x = -Global.XACCELERATION;
-        else if(direction==2 && v.x>0)
-            a.x = Global.XACCELERATION;
-        else if(v.x<0 && direction ==3)
-            a.x = Global.XDECELERATION;
-        else if(v.x>0 && direction ==3)
-            a.x = -Global.XDECELERATION;  
-    
-        
-        double vsign = v.x/Math.abs(v.x);//this is either 1 or -1 for use in keeping the direction constant
-        if (Math.abs(v.x)>Global.MAX_X_VELOCITY)
-            v.x = Global.MAX_X_VELOCITY * vsign;//sets the velocity to the max.
-            
-        if(Math.abs(v.x) <= Global.XDECELERATION && Math.abs(a.x) == Global.XDECELERATION)
-        {
-            a.x = 0;
-            v.x = 0;
-        }
-                
-        
         
         if (v.y >= 0)//makes sure gravity is less when slime is past peak
             a.y = Global.GRAVITY_GOING_DOWN;
+          
+            
+            
+        //STEP 3
+        //UPDATES X ACCELERATION
+        double vsign = v.x/Math.abs(v.x);//this is either 1 or -1 for use in keeping the direction constant
+        
+        /*if(direction==LEFT && v.x<0) //Prevents derpy turnaround accelerations 
+            a.x = -Global.XACCELERATION;
+        else if(direction==RIGHT && v.x>0)
+            a.x = Global.XACCELERATION;
+        else if(v.x<0 && direction ==STILL)
+            a.x = Global.XDECELERATION;
+        else if(v.x>0 && direction ==STILL)
+            a.x = -Global.XDECELERATION;  */
+        if (direction==LEFT)
+        {
+            if (v.x <= 0)
+                a.x = -Global.XACCELERATION;
+            else //youre still moving right
+                a.x = -Global.XDECELERATION;
+        }
+        else if (direction==RIGHT)
+        {
+            if (v.x >= 0)
+                a.x = Global.XACCELERATION;
+            else //youre still moving left
+                a.x = Global.XDECELERATION;
+        }
+        else //direction==STILL
+        {
+            /*if(Math.abs(v.x) <= Global.XDECELERATION && Math.abs(a.x) == Global.XDECELERATION)
+            {
+                a.x = 0;
+                v.x = 0;
+            }*/
+            if (v.x==0)
+                a.x = 0;
+            else 
+                a.x = vsign * -Global.XDECELERATION;
+        }
+        
+        if(Math.abs(v.x) <= Global.XDECELERATION && Math.abs(a.x) == Global.XDECELERATION)
+            {
+                a.x = 0;
+                v.x = 0;
+            }
+        
+        if (Math.abs(v.x)>Global.MAX_X_VELOCITY)
+            v.x = Global.MAX_X_VELOCITY * vsign;//sets the velocity to the max.
     }
     
     public void setLeft()
     {
-        direction = 1;;
+        direction = LEFT;
         isLeft = true;
     }
     
     public void setRight()
     {
-        direction = 2;
+        direction = RIGHT;
         isLeft = false;
     }
     
     public void setStill()
     {
-        direction = 3;
+        direction = STILL;
     }
     
     public int getDirection()
@@ -126,10 +168,5 @@ public class Slime extends Moveable
     public int getWhichSlime()
     {
         return whichSlime;
-    }
-   
-    public void changeSlime()
-    {
-        whichSlime = Global.SLIME2;
     }
 }

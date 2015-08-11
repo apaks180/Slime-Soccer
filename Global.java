@@ -5,9 +5,6 @@ public class Global
     public static final int minV = 5;
     public static final int maxV = 12;
     
-    public static final int SLIME1 = 0;
-    public static final int SLIME2 = 1;
-    
     public static final double FLOOR = 505;
     public static final double PEAK = 420;//385;
     public static final double LEFT_BOUND = 30;

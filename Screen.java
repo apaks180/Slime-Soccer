@@ -16,7 +16,7 @@ public class Screen extends JComponent
     private Slime s1;
     private Slime s2;
     
-    private static Background back = new Background();
+    private Background back;
     
     public Screen(JFrame f)
     {
@@ -24,13 +24,11 @@ public class Screen extends JComponent
         
         frame = f;
         frame.setSize(Global.WIDTH,Global.HEIGHT);
-        
+        back = new Background();
         
         b = new Ball(this,v1); 
-        s1 = new Slime(this, v3,Global.SLIME1);        
-        s2 = new Slime(this, v2,Global.SLIME2);
-        s1.setLeft(); 
-        s2.changeSlime();
+        s1 = new Slime(this, v3,Slime.SLIME1,true);        
+        s2 = new Slime(this, v2,Slime.SLIME2,false);
         
         frame.addKeyListener(new Listener(s1));        
         frame.addKeyListener(new Listener(s2));   
@@ -41,13 +39,9 @@ public class Screen extends JComponent
         b.draw(g);
         s1.draw(g);
         s2.draw(g); 
-        
-         
     }
     public void run()
     {
-        
-        
         while(true)
         {
             updateVariables();
@@ -59,19 +53,5 @@ public class Screen extends JComponent
     {
         s1.updateVariables();
         s2.updateVariables();
-        
-        /*if((s1.getPosition().x + xcounter > 30) && (s1.getPosition().x + xcounter < (Global.WIDTH - 140))) 
-        {
-            s1.setPosition(new Vector(s1.getPosition().x + xcounter, 505 - ycounter));
-        }
-        else if(ycounter != 0)
-            s1.setPosition(new Vector(s1.getPosition().x, 505 - ycounter));*/
-        
-        /*if((s2.getPosition().x + xcounter2 > 30) && (s2.getPosition().x + xcounter2 < (Global.WIDTH - 140))) 
-        {
-            s2.setPosition(new Vector(s2.getPosition().x + xcounter2, 505 - ycounter2));
-        }
-        else if(ycounter2 != 0)
-            s2.setPosition(new Vector(s2.getPosition().x, 505 - ycounter2)); */                //s2.getVelocity().x, 505));
     }
 }

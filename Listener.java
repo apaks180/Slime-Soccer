@@ -14,7 +14,7 @@ public class Listener implements KeyListener
     {
         slime = s;
         int slimeType = slime.getWhichSlime();
-        if (slimeType == Global.SLIME1)
+        if (slimeType == Slime.SLIME1)
         {
             left = KeyEvent.VK_LEFT;
             right = KeyEvent.VK_RIGHT;
@@ -37,21 +37,19 @@ public class Listener implements KeyListener
         Vector v = slime.getVelocity();
         if (key==left)
         {
-            a.x = -Global.XACCELERATION;
             slime.setLeft();
         }
         else if (key==right)
         {
-            a.x = Global.XACCELERATION;
             slime.setRight();
         }        
-        else if (e.getKeyCode()==up && slime.getPosition().y == Global.FLOOR)
+        else if (key==up && slime.getPosition().y == Global.FLOOR)
         {
             v.y = -Global.JUMP_SPEED;
             a.y = 0;
-            if(slime.getDirection() == 1)
+            if(slime.getDirection() == Slime.LEFT)
                 slime.setLeft();
-            else if(slime.getDirection() == 2)
+            else if(slime.getDirection() == Slime.RIGHT)
                 slime.setRight();
             //a.y = Global.GRAVITY_GOING_DOWN;
         }
