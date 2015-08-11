@@ -15,13 +15,7 @@ public class Game
         f.setVisible(true);
         f.setLocationRelativeTo(null);   //Centers it     
         
-        
-         while(true)
-        {
-            s.updateVariables();
-            s.repaint();            
-            try{Thread.sleep(37);}catch(InterruptedException e){}   //40
-        }
+        s.run();
     }
 }
 

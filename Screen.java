@@ -27,14 +27,34 @@ public class Screen extends JComponent
         
         
         b = new Ball(this,v1); 
-        s1 = new Slime(this, v3,Global.SLIME1);
+        s1 = new Slime(this, v3,Global.SLIME1);        
         s2 = new Slime(this, v2,Global.SLIME2);
         s1.setLeft(); 
+        s2.changeSlime();
         
-        frame.addKeyListener(new Listener(s1));       
+        frame.addKeyListener(new Listener(s1));        
         frame.addKeyListener(new Listener(s2));   
     }
-    
+     public void paintComponent(Graphics g)
+    {
+        back.draw(g);
+        b.draw(g);
+        s1.draw(g);
+        s2.draw(g); 
+        
+         
+    }
+    public void run()
+    {
+        
+        
+        while(true)
+        {
+            updateVariables();
+            repaint();            
+            try{Thread.sleep(37);}catch(InterruptedException e){}   //40
+        }
+    }
     public void updateVariables()
     {
         s1.updateVariables();

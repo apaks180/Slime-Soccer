@@ -6,6 +6,7 @@ public class Listener implements KeyListener
     private final int right;
     private final int up;
     private final int down;
+ 
     
     private final Slime slime;
     
@@ -37,35 +38,46 @@ public class Listener implements KeyListener
         if (key==left)
         {
             a.x = -Global.XACCELERATION;
+            slime.setLeft();
         }
         else if (key==right)
         {
             a.x = Global.XACCELERATION;
-        }
-        else if (key==up)
+            slime.setRight();
+        }        
+        else if (e.getKeyCode()==up && slime.getPosition().y == Global.FLOOR)
         {
             v.y = -Global.JUMP_SPEED;
-            a.y = Global.GRAVITY_GOING_UP;
+            a.y = 0;
+            if(slime.getDirection() == 1)
+                slime.setLeft();
+            else if(slime.getDirection() == 2)
+                slime.setRight();
+            //a.y = Global.GRAVITY_GOING_DOWN;
         }
         else if (key==down)
         {
             //Don't think anything should happen here ever
         }
+      
     }
     
     public void keyReleased(KeyEvent e)
     {
         int key = e.getKeyCode();
         Vector a = slime.getAcceleration();
+        
         if (key==left)
         {
             a.x = Global.XDECELERATION;
+            slime.setStill(); //It's in here instead of out there so that you can tap the jump key, let go, and not start declerating
         }
         else if (key==right)
         {
             a.x = -Global.XDECELERATION;
+            slime.setStill();
         }
-        else if (key==up)
+        if (key==up)
         {
             //nothing needs to be here I think
         }
