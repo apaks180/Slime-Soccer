@@ -23,7 +23,6 @@ public class Screen extends JComponent
         super();
         
         frame = f;
-        frame.setSize(Global.WIDTH,Global.HEIGHT);
         back = new Background();
         
         b = new Ball(this,v1,10); 

@@ -10,7 +10,7 @@ public class Background
     {
         try 
         {                
-           image = ImageIO.read(new File("Background 1.png"));           
+           image = ImageIO.read(new File("Pictures/Background 1.png"));           
         } 
         catch (IOException ex) {System.out.println("Background wasn't found");}
     }

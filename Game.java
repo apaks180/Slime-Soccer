@@ -9,7 +9,7 @@ public class Game
                 
         Screen s = new Screen(f);
        
-
+        f.setSize(Global.WIDTH,Global.HEIGHT);
         f.add(s);
         
         f.setVisible(true);
