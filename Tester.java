@@ -23,4 +23,9 @@ public class Tester
         
         //System.out.println(""+Global.WIDTH / (Global.HEIGHT/30));
     }
+    
+    public static void startGame(JFrame frame)
+    {
+        
+    }
 }

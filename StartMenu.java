@@ -19,7 +19,7 @@ public class StartMenu extends JComponent
         
         int x = Global.WIDTH;
         int y = Global.HEIGHT;
-        double u = y / 30.0;
+        double u = y / 30.0;//these are the units i am using to display everything. Makes it all proportional
         
         selections = new Selection[5];
         selections[0] = new Selection(8,3,10,23,u,"Highscores")
@@ -111,6 +111,7 @@ public class StartMenu extends JComponent
                 nextSelected = 0;
         }
         
+        //this deals with wrapping
         if (nextSelected>=selections.length)
             nextSelected = 0;
         else if (nextSelected<0)
