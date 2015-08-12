@@ -43,7 +43,7 @@ public abstract class Moveable
     }
     
     public abstract void draw(Graphics g);
-    
+    public abstract void updateVariables();
         
     
 }

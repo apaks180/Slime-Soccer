@@ -26,7 +26,7 @@ public class Screen extends JComponent
         frame.setSize(Global.WIDTH,Global.HEIGHT);
         back = new Background();
         
-        b = new Ball(this,v1); 
+        b = new Ball(this,v1,10); 
         s1 = new Slime(this, v3,Slime.SLIME1,true);        
         s2 = new Slime(this, v2,Slime.SLIME2,false);
         
@@ -53,5 +53,6 @@ public class Screen extends JComponent
     {
         s1.updateVariables();
         s2.updateVariables();
+        b.updateVariables();
     }
 }

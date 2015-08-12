@@ -15,4 +15,6 @@ comment6.params=vec
 comment6.target=void\ setAcceleration(Vector)
 comment7.params=g
 comment7.target=void\ draw(java.awt.Graphics)
-numComments=8
+comment8.params=
+comment8.target=void\ updateVariables()
+numComments=9

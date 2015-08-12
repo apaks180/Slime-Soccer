@@ -6,6 +6,11 @@ public class Slime extends Moveable
     private boolean isLeft;
     private int whichSlime; //final int whichSlime;
     
+    private double ea;//half major axis 
+    private double eb;//half minor axis
+    
+    private static final Vector DEFAULT_ELLIPSE_SIZE = new Vector(90,70);
+    
     public static final int LEFT = 1;
     public static final int RIGHT = 2;
     public static final int STILL = 3;
@@ -19,16 +24,18 @@ public class Slime extends Moveable
         direction = STILL;
         whichSlime = slimeNum;
         isLeft = initiallyLeft;
+        ea = DEFAULT_ELLIPSE_SIZE.x/2;
+        eb = DEFAULT_ELLIPSE_SIZE.y/2;
     }
     
     public void draw(Graphics g)
     {
         g.setColor(Color.CYAN);
-        g.fillArc((int)p.x, (int)p.y, 90, 70, 0, 180);      
+        g.fillArc((int)p.x, (int)p.y, (int)(2*ea), (int)(2*eb), 0, 180);      
         
         g.setColor(Color.BLACK);
-        g.drawArc((int)p.x, (int)p.y, 90, 70, 0, 180);  
-        g.drawLine((int)p.x, (int)p.y + 35, (int)p.x + 90, (int)p.y + 35);
+        g.drawArc((int)p.x, (int)p.y, (int)(2*ea), (int)(2*eb), 0, 180);  
+        g.drawLine((int)p.x, (int)p.y + (int)eb, (int)p.x + (int)(2*ea), (int)p.y + (int)eb);
         
         if(!isLeft)
         {
@@ -168,5 +175,15 @@ public class Slime extends Moveable
     public int getWhichSlime()
     {
         return whichSlime;
+    }
+    
+    public double a()
+    {
+        return ea;
+    }
+    
+    public double b()
+    {
+        return eb;
     }
 }

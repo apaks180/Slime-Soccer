@@ -1,6 +1,8 @@
 #BlueJ class context
-comment0.params=s\ vector
-comment0.target=Ball(Screen,\ Vector)
+comment0.params=s\ vector\ radius
+comment0.target=Ball(Screen,\ Vector,\ double)
 comment1.params=g
 comment1.target=void\ draw(java.awt.Graphics)
-numComments=2
+comment2.params=
+comment2.target=void\ updateVariables()
+numComments=3
