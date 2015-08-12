@@ -111,14 +111,14 @@ public class Slime extends Moveable
             if (v.x <= 0)
                 a.x = -Global.XACCELERATION;
             else //youre still moving right
-                a.x = -Global.XDECELERATION;
+                a.x = -Global.XDECELERATION-Global.XACCELERATION;
         }
         else if (direction==RIGHT)
         {
             if (v.x >= 0)
                 a.x = Global.XACCELERATION;
             else //youre still moving left
-                a.x = Global.XDECELERATION;
+                a.x = Global.XDECELERATION+Global.XACCELERATION;
         }
         else //direction==STILL
         {
